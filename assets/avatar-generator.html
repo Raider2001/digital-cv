@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,12 +45,30 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .style1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .style2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
-        .style3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
-        .style4 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
-        .style5 { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
-        .style6 { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; }
+        .style1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .style2 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .style3 {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .style4 {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .style5 {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .style6 {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #333;
+        }
 
         .avatar-options {
             display: grid;
@@ -117,11 +136,12 @@
         }
     </style>
 </head>
+
 <body>
     <div class="avatar-container">
         <h1>Create Your Professional Avatar</h1>
         <p>Choose a style for your CV profile picture:</p>
-        
+
         <div class="avatar-preview">
             <div id="selectedAvatar" class="avatar style1">DS</div>
             <h3>Dave Stevens</h3>
@@ -144,7 +164,8 @@
             <ol>
                 <li><strong>Choose a style</strong> by clicking on the avatars above</li>
                 <li><strong>Download</strong> your preferred size (200x200 recommended for CV)</li>
-                <li><strong>Save the image</strong> as <code>profile-photo.jpg</code> in your CV's <code>assets</code> folder</li>
+                <li><strong>Save the image</strong> as <code>profile-photo.jpg</code> in your CV's <code>assets</code>
+                    folder</li>
                 <li><strong>Update your CV</strong> to uncomment the image section in the HTML</li>
                 <li><strong>Commit and push</strong> the changes to GitHub</li>
             </ol>
@@ -156,10 +177,10 @@
         function selectStyle(styleClass, element) {
             // Remove selected class from all options
             document.querySelectorAll('.avatar-option').forEach(opt => opt.classList.remove('selected'));
-            
+
             // Add selected class to clicked option
             element.classList.add('selected');
-            
+
             // Update the main avatar preview
             const avatar = document.getElementById('selectedAvatar');
             avatar.className = 'avatar ' + styleClass;
@@ -174,7 +195,7 @@
             // Get the selected style
             const selectedAvatar = document.getElementById('selectedAvatar');
             const style = selectedAvatar.className.split(' ')[1];
-            
+
             // Define gradients
             const gradients = {
                 style1: ['#667eea', '#764ba2'],
@@ -193,7 +214,7 @@
             // Draw circle background
             ctx.fillStyle = gradient;
             ctx.beginPath();
-            ctx.arc(size/2, size/2, size/2, 0, 2 * Math.PI);
+            ctx.arc(size / 2, size / 2, size / 2, 0, 2 * Math.PI);
             ctx.fill();
 
             // Draw text
@@ -201,7 +222,7 @@
             ctx.font = `bold ${size * 0.4}px 'Segoe UI', Arial, sans-serif`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            ctx.fillText('DS', size/2, size/2);
+            ctx.fillText('DS', size / 2, size / 2);
 
             return canvas;
         }
@@ -223,4 +244,5 @@
         }
     </script>
 </body>
+
 </html>
