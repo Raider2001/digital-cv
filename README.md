@@ -35,6 +35,7 @@ project_one/
 ## 🎯 Project Goals
 
 This project demonstrates:
+
 - Semantic HTML structure
 - Responsive CSS design
 - Modern web development practices
