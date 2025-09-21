@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avatar Generator - Dave Stevens</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .avatar-container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .avatar-preview {
+            margin: 20px 0;
+        }
+
+        .avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            font-weight: bold;
+            color: white;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .style1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .style2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .style3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .style4 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .style5 { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .style6 { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; }
+
+        .avatar-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .avatar-option {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            color: white;
+            border: 3px solid transparent;
+        }
+
+        .avatar-option:hover {
+            transform: scale(1.1);
+            border-color: #333;
+        }
+
+        .avatar-option.selected {
+            border-color: #333;
+            transform: scale(1.1);
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .instructions {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .instructions h3 {
+            margin-top: 0;
+            color: #2d3748;
+        }
+
+        .instructions ol {
+            color: #4a5568;
+        }
+    </style>
+</head>
+<body>
+    <div class="avatar-container">
+        <h1>Create Your Professional Avatar</h1>
+        <p>Choose a style for your CV profile picture:</p>
+        
+        <div class="avatar-preview">
+            <div id="selectedAvatar" class="avatar style1">DS</div>
+            <h3>Dave Stevens</h3>
+        </div>
+
+        <div class="avatar-options">
+            <div class="avatar-option style1 selected" onclick="selectStyle('style1', this)">DS</div>
+            <div class="avatar-option style2" onclick="selectStyle('style2', this)">DS</div>
+            <div class="avatar-option style3" onclick="selectStyle('style3', this)">DS</div>
+            <div class="avatar-option style4" onclick="selectStyle('style4', this)">DS</div>
+            <div class="avatar-option style5" onclick="selectStyle('style5', this)">DS</div>
+            <div class="avatar-option style6" onclick="selectStyle('style6', this)">DS</div>
+        </div>
+
+        <button onclick="downloadAvatar()">Download Avatar (200x200)</button>
+        <button onclick="downloadAvatarLarge()">Download Avatar (400x400)</button>
+
+        <div class="instructions">
+            <h3>📋 How to Use Your Avatar:</h3>
+            <ol>
+                <li><strong>Choose a style</strong> by clicking on the avatars above</li>
+                <li><strong>Download</strong> your preferred size (200x200 recommended for CV)</li>
+                <li><strong>Save the image</strong> as <code>profile-photo.jpg</code> in your CV's <code>assets</code> folder</li>
+                <li><strong>Update your CV</strong> to uncomment the image section in the HTML</li>
+                <li><strong>Commit and push</strong> the changes to GitHub</li>
+            </ol>
+            <p><strong>💡 Tip:</strong> The 200x200 size is perfect for your CV and will load quickly!</p>
+        </div>
+    </div>
+
+    <script>
+        function selectStyle(styleClass, element) {
+            // Remove selected class from all options
+            document.querySelectorAll('.avatar-option').forEach(opt => opt.classList.remove('selected'));
+            
+            // Add selected class to clicked option
+            element.classList.add('selected');
+            
+            // Update the main avatar preview
+            const avatar = document.getElementById('selectedAvatar');
+            avatar.className = 'avatar ' + styleClass;
+        }
+
+        function createAvatarCanvas(size) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = size;
+            canvas.height = size;
+
+            // Get the selected style
+            const selectedAvatar = document.getElementById('selectedAvatar');
+            const style = selectedAvatar.className.split(' ')[1];
+            
+            // Define gradients
+            const gradients = {
+                style1: ['#667eea', '#764ba2'],
+                style2: ['#f093fb', '#f5576c'],
+                style3: ['#4facfe', '#00f2fe'],
+                style4: ['#43e97b', '#38f9d7'],
+                style5: ['#fa709a', '#fee140'],
+                style6: ['#a8edea', '#fed6e3']
+            };
+
+            // Create gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, gradients[style][0]);
+            gradient.addColorStop(1, gradients[style][1]);
+
+            // Draw circle background
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size/2, 0, 2 * Math.PI);
+            ctx.fill();
+
+            // Draw text
+            ctx.fillStyle = style === 'style6' ? '#333333' : 'white';
+            ctx.font = `bold ${size * 0.4}px 'Segoe UI', Arial, sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('DS', size/2, size/2);
+
+            return canvas;
+        }
+
+        function downloadAvatar() {
+            const canvas = createAvatarCanvas(200);
+            const link = document.createElement('a');
+            link.download = 'profile-photo.jpg';
+            link.href = canvas.toDataURL('image/jpeg', 0.9);
+            link.click();
+        }
+
+        function downloadAvatarLarge() {
+            const canvas = createAvatarCanvas(400);
+            const link = document.createElement('a');
+            link.download = 'profile-photo-large.jpg';
+            link.href = canvas.toDataURL('image/jpeg', 0.9);
+            link.click();
+        }
+    </script>
+</body>
+</html>
