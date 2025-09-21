@@ -1,0 +1,155 @@
+# ===========================
+# .gitignore for Digital CV Project
+# ===========================
+
+# Operating System Files
+# -----------------------
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# Editor and IDE Files
+# --------------------
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Atom
+.atom/
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Temporary Files and Logs
+# ------------------------
+*.log
+*.tmp
+*.temp
+*.cache
+*.pid
+*.seed
+*.pid.lock
+
+# Web Development
+# ---------------
+# Node.js (for future projects)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn-integrity
+
+# Build outputs (for future projects)
+dist/
+build/
+*.min.css
+*.min.js
+*.map
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Image Processing
+# ----------------
+# Photoshop
+*.psd
+
+# Large media files (uncomment if needed)
+# *.mp4
+# *.avi
+# *.mov
+# *.wmv
+
+# Backup files
+# ------------
+*.bak
+*.backup
+*.old
+*~
+
+# Project Specific
+# ----------------
+# Ignore personal photos until ready
+# assets/personal-photos/
+
+# Test files
+test-*.html
+debug.html
+
+# Documentation drafts
+*.draft.md
+
+# Compressed files
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# ===========================
+# Future Project Extensions
+# ===========================
+# This .gitignore is set up to handle future web development projects too!
